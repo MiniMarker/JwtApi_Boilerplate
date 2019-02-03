@@ -1,6 +1,4 @@
-# JwtApi_Boilerplate
-
-TODO: Write a project description
+# JwtApi_Boilerplate - WIP
 
 ## Installation
 
