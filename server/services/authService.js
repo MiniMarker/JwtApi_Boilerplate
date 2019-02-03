@@ -5,16 +5,6 @@ const {signJwtToken} = require("../utils/jwtToken");
 
 const BCRYPT_SALT_ROUNDS = 10;
 
-/*
-function getUserInternal(username) {
-	return new Promise((resolve, reject) => {
-		client.query("SELECT * FROM users WHERE username = $1", [username])
-			.then((res) => { return res.rows.length > 0 ? resolve(res.rows[0]) : reject(undefined) })
-			.catch(() => reject(undefined));
-	})
-}
-*/
-
 function getUser(req, res) {
 	return res.status(200).send({
 		username: req.user.username,
@@ -55,13 +45,13 @@ function register(req, res){
 						.then(hash => {
 							authRepository.createUser(username, hash, "USER")
 								.then(() =>  res.status(200).send(successObject(200, tokenObject({username, role}))))
-								.catch((err) => res.status(500).send(errorObject(500, "Error in createUser: ", err)))
+								.catch((reason) => res.status(500).send(errorObject(500, "Error in createUser: ", reason)))
 						})
-						.catch(reason => res.status(500).send(errorObject(500, "Error in generation of hash")))
+						.catch((reason) => res.status(500).send(errorObject(500, "Error in generation of hash: ", reason)))
 				}))
-				.catch((reason => res.status(500).send(errorObject(500, "Error in generation of salt"))))
+				.catch((reason) => res.status(500).send(errorObject(500, "Error in generation of salt: ", reason)))
 		})
-		.catch((err) => res.status(500).send(errorObject(500, "Error in getUserByUsername")))
+		.catch((reason) => res.status(500).send(errorObject(500, "Error in getUserByUsername: ", reason)))
 }
 
 function roleAuthorization(roles){

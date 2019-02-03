@@ -32,7 +32,7 @@ const getUserByUsername = (username) => {
 	return new Promise((resolve, reject) => {
 
 		client.query(getUserByUsernameQuery, [username])
-			.then((res) => {return res.rows.length > 0 ? resolve(res.rows[0]) : resolve(undefined)})
+			.then((res) => { return res.rows.length > 0 ? resolve(res.rows[0]) : resolve(undefined) })
 			.catch((err) => reject(err.toString()))
 	})
 };
@@ -55,6 +55,6 @@ const deleteUser = (username) => {
 			.then(() => resolve(true))
 			.catch((err) => reject(err.toString()))
 	})
-}
+};
 
 module.exports = {createUsersTable, createUser, getUserByUsername, deleteUser};

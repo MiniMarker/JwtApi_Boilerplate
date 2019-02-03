@@ -1,8 +1,8 @@
 
 const userTableName = `users`;
 
-const createUserTableQuery = `CREATE TABLE ${userTableName} (
-    id SERIAL PRIMARY KEY,
+const createUserTableQuery = `CREATE TABLE IF NOT EXISTS ${userTableName} (
+    id SERIAL,
     username text PRIMARY KEY,
     password text NOT NULL,
     role text NOT NULL
