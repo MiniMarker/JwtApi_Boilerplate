@@ -1,40 +1,34 @@
-const {signJwtToken} = require("./jwtToken");
+import { signJwtToken } from './jwtToken';
 
-const successObject = (statusCode, data) => {
+export const successObject = (statusCode, data) => {
 	return {
-		status: "SUCCESS",
-		statusCode,
 		data,
-		message: null
-	}
+		message: null,
+		status: 'SUCCESS',
+		statusCode
+	};
 };
-
-const failObject = (statusCode, message) => {
+export const failObject = (statusCode, message) => {
 	return {
-		status: "FAIL",
-		statusCode,
 		data: null,
-		message
-	}
+		message,
+		status: 'FAIL',
+		statusCode
+	};
 };
 
-const errorObject = (statusCode, message) => {
+export const errorObject = (statusCode, message) => {
 	return {
-		status: "ERROR",
-		statusCode,
 		data: null,
-		message
-	}
+		message,
+		status: 'ERROR',
+		statusCode
+	};
 };
 
-const tokenObject = (userObject) => {
-
-	console.log("Entered tokenObject");
-
+export const tokenObject = userObject => {
 	return {
 		token: 'JWT ' + signJwtToken(userObject),
 		user: userObject
-	}
+	};
 };
-
-module.exports = {successObject, failObject, errorObject, tokenObject};

@@ -1,16 +1,16 @@
-//Dependencies
-import express, { Router as router } from 'express'
-import passport from 'passport'
-const passportService = require('../config/passport') // THIS NEEDS TO STAY!
+import { getUser, login, register } from '../services/authService';
+import express from 'express';
+import passport from 'passport';
 
-const requireAuth = passport.authenticate('jwt', { session: false })
-const requireLogin = passport.authenticate('local', { session: false })
+const router = express.Router();
+// eslint-disable-next-line
+const passportService = require('../config/passport'); // THIS NEEDS TO STAY!
 
-//Local files
-const authService = require('../services/authService')
+const requireAuth = passport.authenticate('jwt', { session: false });
+const requireLogin = passport.authenticate('local', { session: false });
 
-router.post('/register', authService.register)
-router.post('/login', requireLogin, authService.login)
-router.get('/user', requireAuth, authService.getUser)
+router.post('/register', register);
+router.post('/login', requireLogin, login);
+router.get('/user', requireAuth, getUser);
 
-export default router
+export default router;

@@ -3,6 +3,4 @@
  * @date 2019-03-09
  */
 
-const sqlError = () => `Error on sql query`
-
-module.exports = { sqlError }
+export const sqlError = () => 'Error on sql query';

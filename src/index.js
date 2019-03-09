@@ -1,9 +1,13 @@
-import { app } from './config/app'
-const server = require('http').Server(app)
+import { Server } from 'http';
+import { app } from './config/app';
 
-//Starting src
-const port = process.env.PORT || 8080
+const server = Server(app);
+
+// Starting src
+// eslint-disable-next-line
+const port = process.env.PORT || 8080;
 
 server.listen(port, () => {
-	console.log('Starting src on port ' + port)
-})
+	// eslint-disable-next-line
+	console.log('Starting src on port ' + port);
+});
