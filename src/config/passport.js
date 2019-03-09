@@ -1,15 +1,14 @@
-import passport from 'passport';
-import { Strategy as LocalStrategy } from 'passport-local';
-import { Strategy as JwtStrategy } from 'passport-jwt';
 import { ExtractJwt } from 'passport-jwt';
+import { Strategy as JwtStrategy } from 'passport-jwt';
+import { Strategy as LocalStrategy } from 'passport-local';
 import bcrypt from 'bcrypt';
 import { getUserByUsername } from '../repositories/authRepository';
+import passport from 'passport';
 
 // Setup JwtStrategy
 const jwtOptions = {
 	jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('jwt'),
-	secretOrKey: 'aSecret' //fs.readFileSync("./public.key", "utf8"),
-	//algorithm: ["RS256"]
+	secretOrKey: 'aSecret'
 };
 
 let jwtStrategy = new JwtStrategy(jwtOptions, function(payload, done) {
